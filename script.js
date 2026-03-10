@@ -4,12 +4,8 @@ const offerCards = document.querySelectorAll("[data-bundle]");
 const bundleSelect = document.querySelector("#bundle-select");
 const checkoutForm = document.querySelector("#checkout-form");
 const formStatus = document.querySelector("#form-status");
-
-function encodeFormData(data) {
-  return Object.keys(data)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join("&");
-}
+const hiddenFormFrame = document.querySelector("#hidden-form-frame");
+let isSubmittingOrder = false;
 
 function setFormStatus(type, message) {
   if (!formStatus) return;
@@ -63,9 +59,7 @@ if (bundleSelect) {
 }
 
 if (checkoutForm) {
-  checkoutForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
+  checkoutForm.addEventListener("submit", (event) => {
     if (!checkoutForm.reportValidity()) {
       return;
     }
@@ -75,39 +69,27 @@ if (checkoutForm) {
       submitButton.disabled = true;
       submitButton.textContent = "Submitting...";
     }
+    isSubmittingOrder = true;
+    setFormStatus("success", "Submitting your order...");
+  });
+}
 
-    const formData = new FormData(checkoutForm);
-    const payload = {};
-    formData.forEach((value, key) => {
-      payload[key] = value.toString();
-    });
+if (hiddenFormFrame) {
+  hiddenFormFrame.addEventListener("load", () => {
+    if (!isSubmittingOrder) return;
 
-    try {
-      const response = await fetch("/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: encodeFormData(payload),
-      });
+    isSubmittingOrder = false;
+    checkoutForm?.reset();
+    if (bundleSelect) {
+      bundleSelect.value = "Two Units - ₦42,999";
+    }
+    bundleCopy.textContent = "Order submitted successfully. We will contact you shortly after reviewing your details.";
+    setFormStatus("success", "Order submitted successfully. We will contact you shortly.");
 
-      if (!response.ok) {
-        throw new Error("Submission failed");
-      }
-
-      checkoutForm.reset();
-      if (bundleSelect) {
-        bundleSelect.value = "Two Units - ₦42,999";
-      }
-      bundleCopy.textContent = "Order submitted successfully. We will contact you shortly after reviewing your details.";
-      setFormStatus("success", "Order submitted successfully. Check your Netlify dashboard for the new submission.");
-    } catch (error) {
-      setFormStatus("error", "Order could not be submitted right now. Please try again or send your order on WhatsApp.");
-    } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = "Submit order";
-      }
+    const submitButton = checkoutForm?.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit order";
     }
   });
 }

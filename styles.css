@@ -468,6 +468,14 @@ video {
   display: none;
 }
 
+.hidden-frame {
+  width: 0;
+  height: 0;
+  border: 0;
+  position: absolute;
+  left: -9999px;
+}
+
 .form-status {
   display: none;
   margin: 0 0 18px;

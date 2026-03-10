@@ -301,13 +301,17 @@
           <form
             class="checkout-form"
             id="checkout-form"
-            action="https://formsubmit.co/ibiangsampson@gmail.com"
+            name="uv-toilet-order"
             method="POST"
+            netlify
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            action="/thank-you.html"
           >
-            <input type="hidden" name="_subject" value="New UV Toilet Sterilizer Order">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="thank-you.html">
+            <input type="hidden" name="form-name" value="uv-toilet-order">
+            <p class="bot-field">
+              <label>Do not fill this out if you're human: <input name="bot-field"></label>
+            </p>
             <div class="form-grid">
               <label>
                 <span>Full name</span>
@@ -341,8 +345,9 @@
             </div>
           </form>
           <p class="channel-note">
-            Form orders are sent to <strong>ibiangsampson@gmail.com</strong>. For direct chat, use
-            WhatsApp to message <strong>07076816040</strong>.
+            This form is set up for Netlify Forms. After deployment, submissions will appear in
+            your Netlify dashboard. For direct chat, use WhatsApp to message
+            <strong>07076816040</strong>.
           </p>
           <p class="micro-note">
             Product feature copy on this page is based on multiple live marketplace listings for

@@ -464,6 +464,10 @@ video {
   margin: 28px 0 18px;
 }
 
+.bot-field {
+  display: none;
+}
+
 .channel-note {
   margin: 0 0 18px;
   color: rgba(255, 255, 255, 0.86);

@@ -173,7 +173,6 @@
             <ul class="bonus-points">
               <li>500ml toilet cleaner included free</li>
               <li>Free delivery included</li>
-              <li>Stronger perceived value at checkout</li>
             </ul>
           </div>
           <div class="bonus-image-wrap">
@@ -196,7 +195,7 @@
           <article class="price-card reveal" data-bundle="1 Unit">
             <p class="card-tag">Starter pack</p>
             <h3>One Unit</h3>
-            <p class="price">₦22,999</p>
+            <p class="price">NGN 22,999</p>
             <p class="price-note">Perfect for one household toilet.</p>
             <a class="button button-primary" href="#cta">Order one now</a>
           </article>
@@ -204,7 +203,7 @@
           <article class="price-card featured reveal" data-bundle="2 Units">
             <p class="card-tag">Best value</p>
             <h3>Two Units</h3>
-            <p class="price">₦42,999</p>
+            <p class="price">NGN 42,999</p>
             <p class="price-note">Ideal for two bathrooms or home and office use.</p>
             <a class="button button-primary" href="#cta">Order two now</a>
           </article>
@@ -212,7 +211,7 @@
           <article class="price-card reveal" data-bundle="3 Units">
             <p class="card-tag">Bulk saver</p>
             <h3>Three Units</h3>
-            <p class="price">₦63,999</p>
+            <p class="price">NGN 63,999</p>
             <p class="price-note">Best for bigger homes, short-lets, or multiple toilets.</p>
             <a class="button button-primary" href="#cta">Order three now</a>
           </article>
@@ -262,22 +261,16 @@
           <details class="faq-item reveal">
             <summary>Will it fit a standard home toilet?</summary>
             <p>
-              Most listings position this as a compact universal-style unit for many modern home
-              toilets. Exact fit can vary with seat shape and mounting surface.
-            </p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Is it difficult to install?</summary>
-            <p>
-              No. This product type is commonly sold as an easy-install unit with a compact body
-              and simple mounting method for everyday home use.
+              It is designed to work with many standard home toilets and modern toilet seats.
+              As with most bathroom accessories, fit can depend on the shape of your seat and the
+              available mounting surface.
             </p>
           </details>
           <details class="faq-item reveal">
             <summary>Does it require constant charging?</summary>
             <p>
-              No. Comparable listings describe it as a rechargeable low-power device, so it is
-              meant for repeated use between charges rather than constant plug-in operation.
+              No. It is rechargeable, so you use it for a period of time and recharge it when
+              needed. It is not designed to stay plugged in all the time.
             </p>
           </details>
           <details class="faq-item reveal">
@@ -295,8 +288,7 @@
           <p class="eyebrow">Final call</p>
           <h2>Please do not fill this form unless you are ready to place your order.</h2>
           <p id="bundle-copy">
-            Fill in your details, choose your bundle, and send your order directly on WhatsApp in
-            a few seconds.
+            Fill in your details, choose your bundle, and submit your order in a few seconds.
           </p>
           <form
             class="checkout-form"
@@ -329,9 +321,9 @@
               <label>
                 <span>Bundle</span>
                 <select id="bundle-select" name="bundle" required>
-                  <option value="One Unit - ₦22,999">One Unit - ₦22,999</option>
-                  <option value="Two Units - ₦42,999" selected>Two Units - ₦42,999</option>
-                  <option value="Three Units - ₦63,999">Three Units - ₦63,999</option>
+                  <option value="One Unit - NGN 22,999">One Unit - NGN 22,999</option>
+                  <option value="Two Units - NGN 42,999" selected>Two Units - NGN 42,999</option>
+                  <option value="Three Units - NGN 63,999">Three Units - NGN 63,999</option>
                 </select>
               </label>
               <label class="full-span">
@@ -348,8 +340,7 @@
           <p class="form-status" id="form-status" aria-live="polite"></p>
           <p class="channel-note">
             This form is set up for Netlify Forms. After deployment, submissions will appear in
-            your Netlify dashboard. For direct chat, use WhatsApp to message
-            <strong>07076816040</strong>.
+            your Netlify dashboard. For direct chat, use the WhatsApp widget on this page.
           </p>
           <p class="micro-note">
             Product feature copy on this page is based on multiple live marketplace listings for
@@ -367,16 +358,42 @@
     class="hidden-frame"
   ></iframe>
 
-  <a
-    class="whatsapp-float"
-    href="https://wa.me/2347076816040?text=Hello%20G%26DSquare%2C%20I%20want%20to%20make%20an%20enquiry%20about%20the%20UV%20Toilet%20Sterilizer."
-    target="_blank"
-    rel="noopener"
-    aria-label="Chat on WhatsApp"
-  >
-    <span class="whatsapp-float-label">Chat on WhatsApp</span>
-    <span class="whatsapp-float-icon">WA</span>
-  </a>
+  <section class="chat-widget" aria-label="WhatsApp chat assistant">
+    <button class="chat-toggle" id="chat-toggle" type="button" aria-expanded="false" aria-controls="chat-panel">
+      <span class="chat-toggle-ping"></span>
+      <span class="chat-toggle-icon">WA</span>
+      <span class="chat-toggle-copy">Need help?</span>
+    </button>
+
+    <div class="chat-panel" id="chat-panel" hidden>
+      <div class="chat-panel-header">
+        <div>
+          <p class="chat-panel-title">G&amp;DSquare Support</p>
+          <p class="chat-panel-subtitle">Ask here first, then continue on WhatsApp</p>
+        </div>
+        <button class="chat-close" id="chat-close" type="button" aria-label="Close chat">x</button>
+      </div>
+
+      <div class="chat-thread" id="chat-thread">
+        <article class="chat-bubble chat-bubble-assistant">
+          Hello. What assistance do you need with the UV Toilet Sterilizer today?
+        </article>
+      </div>
+
+      <form class="chat-form" id="chat-form">
+        <label class="chat-label" for="chat-message">Your message</label>
+        <textarea
+          class="chat-input"
+          id="chat-message"
+          name="chat-message"
+          rows="3"
+          placeholder="Ask about delivery, pricing, installation, or how it works..."
+          required
+        ></textarea>
+        <button class="chat-send" type="submit">Continue to WhatsApp</button>
+      </form>
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>

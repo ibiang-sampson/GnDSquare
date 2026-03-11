@@ -55,7 +55,7 @@ bundleSelect?.addEventListener("change", () => {
   bundleCopy.textContent = `${bundleSelect.value} selected. Fill the form and submit your order.`;
 });
 
-checkoutForm?.addEventListener("submit", () => {
+checkoutForm?.addEventListener("submit", (event) => {
   if (!checkoutForm.reportValidity()) return;
 
   const submitButton = checkoutForm.querySelector('button[type="submit"]');

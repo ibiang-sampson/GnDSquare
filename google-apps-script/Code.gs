@@ -1,10 +1,12 @@
 const SHEET_NAME = "Orders";
 const NOTIFICATION_EMAIL = "gndsquare2@gmail.com";
+const SHEET_HEADERS = ["Timestamp", "Name", "Phone", "City/State", "Bundle", "Address"];
 
 function doPost(e) {
   try {
     const data = normalizePayload_(e);
     const sheet = getSheet_();
+    ensureSheetHeaders_(sheet);
 
     sheet.appendRow([
       new Date(),
@@ -27,7 +29,6 @@ function doPost(e) {
         `Bundle: ${data.bundle}`,
         `Address: ${data.address}`,
       ].join("\n"),
-      replyTo: Session.getActiveUser().getEmail(),
     });
 
     return ContentService
@@ -42,9 +43,15 @@ function doPost(e) {
 
 function setupSheet() {
   const sheet = getSheet_();
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(["Timestamp", "Name", "Phone", "City/State", "Bundle", "Address"]);
-  }
+  ensureSheetHeaders_(sheet);
+}
+
+function testEmail() {
+  MailApp.sendEmail({
+    to: NOTIFICATION_EMAIL,
+    subject: "Test email from UV Toilet Sterilizer form",
+    body: "This is a test email from your Google Apps Script setup.",
+  });
 }
 
 function getSheet_() {
@@ -56,6 +63,21 @@ function getSheet_() {
   }
 
   return sheet;
+}
+
+function ensureSheetHeaders_(sheet) {
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(SHEET_HEADERS);
+    return;
+  }
+
+  const firstRow = sheet.getRange(1, 1, 1, SHEET_HEADERS.length).getValues()[0];
+  const headersMatch = SHEET_HEADERS.every((header, index) => firstRow[index] === header);
+
+  if (!headersMatch) {
+    sheet.insertRows(1, 1);
+    sheet.getRange(1, 1, 1, SHEET_HEADERS.length).setValues([SHEET_HEADERS]);
+  }
 }
 
 function normalizePayload_(e) {

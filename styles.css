@@ -314,6 +314,36 @@ video {
   margin: 0 0 88px;
 }
 
+.story-layout {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.story-copy h2 {
+  margin: 0 0 16px;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.98;
+}
+
+.story-image {
+  overflow: hidden;
+  min-height: 420px;
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(213, 255, 242, 0.58));
+  box-shadow: var(--shadow);
+}
+
+.story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .section-heading {
   max-width: 760px;
   margin-bottom: 30px;
@@ -335,6 +365,23 @@ video {
 .feature-card,
 .process-card {
   padding: 28px;
+}
+
+.feature-card-tight {
+  padding: 22px;
+}
+
+.feature-tight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.feature-tight-grid div {
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.56);
+  border: 1px solid rgba(18, 32, 51, 0.08);
 }
 
 .media-grid {
@@ -762,6 +809,7 @@ video {
 
 @media (max-width: 980px) {
   .hero-grid,
+  .story-layout,
   .bonus-card,
   .pricing-grid,
   .process-grid,
@@ -797,6 +845,10 @@ video {
   }
 
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-tight-grid {
     grid-template-columns: 1fr;
   }
 }

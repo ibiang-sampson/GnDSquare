@@ -860,6 +860,15 @@ video {
     width: min(100% - 20px, 1180px);
   }
 
+  .hero-copy,
+  .story-copy,
+  .media-copy,
+  .section-heading,
+  .offer-footnote {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
   .topbar {
     gap: 12px;
   }
